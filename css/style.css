@@ -1,0 +1,13 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+
+}
+.hand {
+	cursor: pointer;
+}
+.bg-default {
+	background: #f0f0f0;
+}

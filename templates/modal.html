@@ -1,0 +1,43 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add an Event</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Name:<br />
+        <input class="form-control" type="text" data-ng-model="inputData.name" placeholder="Event name" />
+        <br />
+        Date:<br />
+        <div class="row">
+            <div class="col-md-6">
+                <p class="input-group">
+                  <input type="text" class="form-control" datepicker-popup="{{format}}" data-ng-model="dt" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </p>
+            </div>
+        </div>
+        <br />
+        Venue:<br />
+        <input class="form-control" type="text" data-ng-model="inputData.venue.name" placeholder="Venue" />
+        <br />
+        City:<br />
+        <input class="form-control" type="text" data-ng-model="inputData.venue.city" placeholder="City" />
+        <br />
+        State:<br />
+        <input class="form-control" type="text" data-ng-model="inputData.venue.state" placeholder="State" />
+        <br />
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-ng-click="addEvent()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

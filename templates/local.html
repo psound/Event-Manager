@@ -1,0 +1,43 @@
+<div class="container" id="content">
+	<div class="clearfix"></div>
+	<div class="col-md-6">
+		Enter Your City: <input type="text" class="form-control" data-ng-model="cityInput" />
+	<br />
+	</div>
+	<table class="table table-bordered table-striped">
+      <thead>
+        <tr class="bg-default">
+          <th>Event Name</th>
+          <th>Date</th>
+          <th>Venue</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="event in events | filter:cityInput | orderBy:'name' ">
+           	<td ng-hide="editorEnabled">{{event.name}}</td>
+			<td ng-hide="editorEnabled">{{event.date | date: 'MMM dd hh:mm a'}}</td>
+			<td ng-hide="editorEnabled">{{event.venue.name}}</td>
+			<td ng-hide="editorEnabled">{{event.venue.city}}</td>
+			<td ng-hide="editorEnabled">{{event.venue.state}}</td>
+			<td ng-hide="editorEnabled"><span class="glyphicon glyphicon-edit" ng-click="editorEnabled = true"></span> | 
+				<span ng-click="removeEvent($index)" class="glyphicon glyphicon-trash hand"></span>
+			</td>
+
+				<td ng-show="editorEnabled" ><input ng-model="event.name"></td>
+				<td ng-show="editorEnabled" ><input ng-model="event.date"></td>
+	      	<td ng-show="editorEnabled" ><input ng-model="event.venue.name"></td>
+	      	<td ng-show="editorEnabled" ><input ng-model="event.venue.city"></td>
+	      	<td ng-show="editorEnabled" ><input ng-model="event.venue.state"></td>
+				<td ng-show="editorEnabled"><a href="javascript: void(0)" ng-click="editorEnabled=!editorEnabled"><span class="glyphicon glyphicon-ok"></span></a>
+			</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  		Add Event
+	</button>
+</div>

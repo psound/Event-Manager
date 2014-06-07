@@ -1,0 +1,36 @@
+<div class="container">
+	<!--<div ng-repeat="eventPerCity in eventsToFilter() | filter:filterEvents"> -->
+        <h4>Upcoming Events</h4>
+		<table class="table table-bordered table-striped">
+	      <thead>
+	        <tr class="bg-default">
+	          <th>Event Name</th>
+	          <th>Date</th>
+	          <th>Venue</th>
+	          <th>City</th>
+	          <th>State</th>
+	          <th>Action</th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	        <tr data-ng-repeat="newEvent in upcomingEvents">
+	        	<td ng-hide="editorEnabled">{{newEvent.name}}</td>
+				<td ng-hide="editorEnabled">{{newEvent.date | date: 'MMM dd hh:mm a'}}</td>
+				<td ng-hide="editorEnabled">{{newEvent.venue.name}}</td>
+				<td ng-hide="editorEnabled">{{newEvent.venue.city}}</td>
+				<td ng-hide="editorEnabled">{{newEvent.venue.state}}</td>
+				<td ng-hide="editorEnabled"><span class="glyphicon glyphicon-edit" ng-click="editorEnabled = true"></span> | 
+					<span ng-click="removeEvent($index)" class="glyphicon glyphicon-trash hand"></span>
+				</td>
+
+	  			<td ng-show="editorEnabled" ><input ng-model="newEvent.name"></td>
+	  			<td ng-show="editorEnabled" ><input ng-model="newEvent.date"></td>
+	          	<td ng-show="editorEnabled" ><input ng-model="newEvent.venue.name"></td>
+	          	<td ng-show="editorEnabled" ><input ng-model="newEvent.venue.city"></td>
+	          	<td ng-show="editorEnabled" ><input ng-model="newEvent.venue.state"></td>
+	  			<td ng-show="editorEnabled"><a href="javascript: void(0)" ng-click="editorEnabled=!editorEnabled"><span class="glyphicon glyphicon-ok"></span></a></td>
+	        </tr>
+	      </tbody>
+	    </table>
+	<!--</div> -->
+</div>

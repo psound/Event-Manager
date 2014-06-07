@@ -1,0 +1,92 @@
+<div class="container">
+<h4>All Events</h4>	
+<div ng-repeat="eventPerCity in eventsToFilter() | filter:filterEvents">
+    <h4>Events in: {{eventPerCity.venue.city}}</h4>
+	<table class="table table-bordered table-striped">
+      <thead>
+        <tr class="bg-default">
+          <th>Event Name</th>
+          <th>Date</th>
+          <th>Venue</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="event in events | filter: eventPerCity.venue.city">
+        	<td ng-hide="editorEnabled">{{event.name}}</td>
+			<td ng-hide="editorEnabled">{{event.date | date: 'MMM dd hh:mm a'}}</td>
+			<td ng-hide="editorEnabled">{{event.venue.name}}</td>
+			<td ng-hide="editorEnabled">{{event.venue.city}}</td>
+			<td ng-hide="editorEnabled">{{event.venue.state}}</td>
+			<td ng-hide="editorEnabled"><span class="glyphicon glyphicon-edit" ng-click="editorEnabled = true"></span> | 
+				<span ng-click="removeEvent($index)" class="glyphicon glyphicon-trash hand"></span>
+			</td>
+
+  			<td ng-show="editorEnabled" ><input ng-model="event.name"></td>
+  			<td ng-show="editorEnabled" ><input ng-model="event.date"></td>
+          	<td ng-show="editorEnabled" ><input ng-model="event.venue.name"></td>
+          	<td ng-show="editorEnabled" ><input ng-model="event.venue.city"></td>
+          	<td ng-show="editorEnabled" ><input ng-model="event.venue.state"></td>
+  			<td ng-show="editorEnabled"><a href="javascript: void(0)" ng-click="editorEnabled=!editorEnabled"><span class="glyphicon glyphicon-ok"></span></a></td>
+        </tr>
+      </tbody>
+    </table>
+	</div>
+    <br />
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  		Add Event
+	</button>	
+    <br />
+    </div>
+	<div class="clearfix"></div>
+	<br>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add an Event</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+        	Name:<br />
+	    	<input class="form-control" type="text" data-ng-model="inputData.name" placeholder="Event name" />
+	    	<br />
+	    	Date:<br />
+	    	<div class="row">
+		        <div class="col-md-6">
+		            <p class="input-group">
+		              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+		              <span class="input-group-btn">
+		                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+		              </span>
+		            </p>
+		        </div>
+		    </div>
+	    	<br />
+	    	Hour:
+	    	<timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+	    	<br />
+	    	Venue:<br />
+	    	<input class="form-control" type="text" data-ng-model="inputData.venue.name" placeholder="Venue" />
+	    	<br />
+	    	City:<br />
+	    	<input class="form-control" type="text" data-ng-model="inputData.venue.city" placeholder="City" />
+	    	<br />
+	    	State:<br />
+	    	<input class="form-control" type="text" data-ng-model="inputData.venue.state" placeholder="State" />
+	    	<br />
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-ng-click="addEvent()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
